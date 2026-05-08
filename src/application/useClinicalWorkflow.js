@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
 import { apiClient } from './apiClient';
 
-const SOCKET_URL = 'http://localhost:3000';
+const SOCKET_URL = window.location.origin;
 
 const registrationDefaults = {
   nik: '3273010705260004',

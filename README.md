@@ -7,7 +7,7 @@ Digitalisasi operasional medis harian dengan integrasi data seluruh unit.
 - **Frontend:** React, Vite, Tailwind CSS, Lucide React, Socket.io-client.
 - **Backend:** Laravel (API), Eloquent ORM (UUID & JSONB).
 - **Realtime:** Node.js, Socket.io, Express.
-- **Database:** PostgreSQL (recommended) / SQLite (current dev).
+- **Database:** Supabase PostgreSQL (Tokyo Region).
 
 ## Project Structure
 
@@ -24,7 +24,7 @@ cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
-# Configure your DB in .env
+# Database is already configured for Supabase in .env
 php artisan migrate
 php artisan db:seed
 php artisan serve

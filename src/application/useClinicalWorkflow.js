@@ -15,6 +15,17 @@ const registrationDefaults = {
   nadi: '79',
 };
 
+const igdDefaults = {
+  nik: '3273010705269999',
+  namaLengkap: 'Pasien Gawat',
+  tanggalLahir: '1990-01-01',
+  triageLevel: 'P1',
+  keluhanUtama: 'Nyeri dada hebat dan sesak napas.',
+  tekananDarah: '160/100',
+  suhu: '37.5',
+  nadi: '110',
+};
+
 const clinicDefaults = {
   kodeIcd10: 'J00',
   keluhanUtama: 'Demam ringan, pilek, dan nyeri tenggorokan sejak dua hari.',
@@ -41,6 +52,7 @@ export function useClinicalWorkflow() {
   const [activeVisitId, setActiveVisitId] = useState(null);
   const [activeModule, setActiveModule] = useState('pendaftaran');
   const [registrationForm, setRegistrationForm] = useState(registrationDefaults);
+  const [igdForm, setIgdForm] = useState(igdDefaults);
   const [clinicForm, setClinicForm] = useState(clinicDefaults);
 
   const refreshData = async () => {
@@ -119,6 +131,32 @@ export function useClinicalWorkflow() {
     }
   };
 
+  const handleRegisterIgd = async (event) => {
+    event.preventDefault();
+    try {
+      const { pasien, kunjungan } = await apiClient.registerIgd({
+        nik: igdForm.nik,
+        nama_lengkap: igdForm.namaLengkap,
+        tanggal_lahir: igdForm.tanggalLahir,
+        triage_level: igdForm.triageLevel,
+        triage_detail: {
+          keluhan_utama: igdForm.keluhanUtama,
+        },
+        tanda_vital: {
+          tekanan_darah: igdForm.tekananDarah,
+          suhu: igdForm.suhu,
+          nadi: igdForm.nadi,
+        },
+      });
+
+      await refreshData();
+      setActiveVisitId(kunjungan.id);
+      setActiveModule('antrian');
+    } catch (error) {
+      alert('Pendaftaran IGD gagal: ' + error.message);
+    }
+  };
+
   const handleCallNext = async () => {
     const candidate = visits.find((v) => v.status === 'MENUNGGU') ?? activeVisit;
     if (!candidate) return;
@@ -192,8 +230,10 @@ export function useClinicalWorkflow() {
     handleCallNext,
     handlePayBill,
     handleRegister,
+    handleRegisterIgd,
     handleSubmitClinic,
     handleValidatePrescription,
+    igdForm,
     latestAnamnesa,
     latestPatient,
     medicines,
@@ -202,6 +242,7 @@ export function useClinicalWorkflow() {
     registrationForm,
     setActiveModule,
     setClinicForm,
+    setIgdForm,
     setRegistrationForm,
     stats,
     visits,

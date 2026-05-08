@@ -2,6 +2,7 @@ import { useClinicalWorkflow } from './application/useClinicalWorkflow';
 import AuditPanel from './components/AuditPanel';
 import CashierPanel from './components/CashierPanel';
 import ClinicPanel from './components/ClinicPanel';
+import IgdPanel from './components/IgdPanel';
 import ErDiagramPanel from './components/ErDiagramPanel';
 import FlowTimeline from './components/FlowTimeline';
 import ModulePage, { NextModuleButton } from './components/ModulePage';
@@ -24,8 +25,10 @@ function App() {
     handleCallNext,
     handlePayBill,
     handleRegister,
+    handleRegisterIgd,
     handleSubmitClinic,
     handleValidatePrescription,
+    igdForm,
     latestAnamnesa,
     latestPatient,
     medicines,
@@ -34,6 +37,7 @@ function App() {
     registrationForm,
     setActiveModule,
     setClinicForm,
+    setIgdForm,
     setRegistrationForm,
     stats,
     visits,
@@ -49,6 +53,24 @@ function App() {
         actions={<NextModuleButton onClick={() => setActiveModule('pendaftaran')}>Ke Pendaftaran</NextModuleButton>}
       >
         <ErDiagramPanel />
+      </ModulePage>
+    ),
+    igd: (
+      <ModulePage
+        eyebrow="Fase 2"
+        title="IGD & Triage"
+        description="Pendaftaran darurat dengan penilaian Triage (P1-P5). Data triage disimpan dalam field JSONB dan level triage diindeks untuk prioritas penanganan."
+        actions={<NextModuleButton onClick={() => setActiveModule('pendaftaran')}>Ke Pendaftaran</NextModuleButton>}
+      >
+        <div className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+          <IgdPanel
+            form={igdForm}
+            latestPatient={latestPatient}
+            onFormChange={setIgdForm}
+            onRegister={handleRegisterIgd}
+          />
+          <FlowTimeline currentIndex={currentIndex} />
+        </div>
       </ModulePage>
     ),
     pendaftaran: (

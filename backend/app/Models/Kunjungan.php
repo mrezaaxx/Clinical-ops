@@ -15,12 +15,23 @@ class Kunjungan extends Model
 
     protected $table = 'kunjungan';
 
-    protected $fillable = ['pasien_id', 'kode_poli', 'nomor_antrian', 'status', 'tanda_vital'];
+    protected $fillable = [
+        'pasien_id',
+        'kode_poli',
+        'nomor_antrian',
+        'status',
+        'tanda_vital',
+        'triage_level',
+        'triage_detail',
+        'waktu_triage',
+    ];
 
     protected function casts(): array
     {
         return [
             'tanda_vital' => 'array',
+            'triage_detail' => 'array',
+            'waktu_triage' => 'datetime',
         ];
     }
 

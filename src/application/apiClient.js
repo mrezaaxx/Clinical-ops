@@ -29,6 +29,7 @@ export const apiClient = {
 
   callVisit: (visitId) => request(`/kunjungan/${visitId}/panggil`, { method: 'POST' }),
   registerPatient: (data) => request('/pendaftaran/pasien', { method: 'POST', body: JSON.stringify(data) }),
+  registerIgd: (data) => request('/igd/pasien', { method: 'POST', body: JSON.stringify(data) }),
   saveAnamnesa: (data) => request('/poliklinik/anamnesa', { method: 'POST', body: JSON.stringify(data) }),
   validatePrescription: (resepId) => request(`/farmasi/resep/${resepId}/validasi`, { method: 'POST' }),
   payBill: (tagihanId) => request(`/kasir/tagihan/${tagihanId}/bayar`, { method: 'POST' }),

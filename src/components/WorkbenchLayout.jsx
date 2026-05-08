@@ -1,5 +1,6 @@
 import {
   Activity,
+  AlertTriangle,
   BadgeCheck,
   Boxes,
   CircleDollarSign,
@@ -15,6 +16,7 @@ import {
 const modules = [
   { id: 'erd', label: 'ERD MVP', icon: GitBranch },
   { id: 'pendaftaran', label: 'Pendaftaran', icon: UserPlus },
+  { id: 'igd', label: 'IGD (Fase 2)', icon: AlertTriangle },
   { id: 'antrian', label: 'Antrian', icon: MonitorUp },
   { id: 'poliklinik', label: 'Poliklinik', icon: HeartPulse },
   { id: 'farmasi', label: 'Farmasi', icon: Pill },

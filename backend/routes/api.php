@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AnamnesaController;
 use App\Http\Controllers\Api\FarmasiController;
+use App\Http\Controllers\Api\IgdController;
 use App\Http\Controllers\Api\KasirController;
 use App\Http\Controllers\Api\PendaftaranController;
 use App\Http\Controllers\Api\WorkflowController;
@@ -16,6 +17,7 @@ Route::get('/tagihan', [WorkflowController::class, 'bills']);
 Route::post('/kunjungan/{visitId}/panggil', [WorkflowController::class, 'call']);
 
 Route::post('/pendaftaran/pasien', [PendaftaranController::class, 'store']);
+Route::post('/igd/pasien', [IgdController::class, 'store']);
 Route::post('/poliklinik/anamnesa', [AnamnesaController::class, 'store']);
 Route::post('/farmasi/resep/{resepId}/validasi', [FarmasiController::class, 'validasi']);
 Route::post('/kasir/tagihan/{tagihanId}/bayar', [KasirController::class, 'bayar']);

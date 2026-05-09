@@ -11,6 +11,11 @@ import QueuePanel from './components/QueuePanel';
 import RegistrationForm from './components/RegistrationForm';
 import StockPanel from './components/StockPanel';
 import WorkbenchLayout from './components/WorkbenchLayout';
+import LandingPage from "./pages/LandingPage";
+
+export default function App() {
+  return <LandingPage />;
+}
 
 function App() {
   const workflow = useClinicalWorkflow();
